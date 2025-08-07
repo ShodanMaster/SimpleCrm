@@ -11,17 +11,22 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $projects = Project::with(['user', 'client'])->paginate(10);
+
+        return view('projects.index', compact('projects'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $users = User::select(['id', 'first_name', 'last_name'])->get();
+        $clients = Client::select(['id', 'company_name'])->get();
+
+        return view('projects.create', compact('users', 'clients'));
     }
 
     /**
