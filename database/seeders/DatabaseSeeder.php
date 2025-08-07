@@ -14,14 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RoleSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            ClientSeeder::class,
+        ]);
 
         user::create([
             'first_name' => 'Akshay',
             'last_name' => 'K',
             'email' => 'akshay@example.com',
             'password' => 'akshay@example',
-        ])->syncRoles([RoleEnum::Admin]);
+        ])->syncRoles([RoleEnum::ADMIN]);
 
         User::factory(10)->create();
 
