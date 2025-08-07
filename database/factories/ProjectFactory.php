@@ -27,8 +27,13 @@ class ProjectFactory extends Factory
             'description' => fake()->paragraph(),
             'deadline_at' => now()->addDays(rand(1, 30))->format('Y-m-d'),
             'status'      => fake()->randomElement(ProjectStatus::cases())->value,
-            'user_id'     => $users->random(),
-            'client_id'   => $clients->random(),
+            'user_id'     => $users->isNotEmpty()
+                ? $users->random()
+                : User::factory(),
+            'client_id'   => $clients->isNotEmpty()
+                ? $clients->random()
+                : Client::factory(),
         ];
     }
+
 }
