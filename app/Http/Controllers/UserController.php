@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
+
         return view('users.index', compact('users'));
     }
 
@@ -34,14 +35,6 @@ class UserController extends Controller
         User::create($request->validated());
 
         return redirect()->route('users.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -68,6 +61,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return redirect()->route('users.index');
     }
 }

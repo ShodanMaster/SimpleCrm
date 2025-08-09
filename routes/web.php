@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('users', UserController::class)->middleware('role:'. RoleEnum::ADMIN->value);
+    Route::resource('users', UserController::class)->middleware('can:'. \App\Enums\PermissionEnum::MANAGE_USERS->value);
     Route::resource('clients', ClientController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('tasks', TaskController::class);

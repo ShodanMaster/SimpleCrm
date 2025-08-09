@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Project;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreTaskRequest;
@@ -55,6 +56,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
+        Gate::authorize(PermissionEnum::DELETE_TASKS->value);
 
         $task->delete();
 
