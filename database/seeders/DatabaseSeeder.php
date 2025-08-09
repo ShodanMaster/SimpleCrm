@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ClientSeeder::class,
             ProjectSeeder::class,
+            TaskSeeder::class,
         ]);
 
         user::create([
